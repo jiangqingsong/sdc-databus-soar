@@ -17,6 +17,6 @@ public interface IAlarmTypeService extends IService<AlarmType> {
      * 查询所有告警事件类型
      * @return
      */
-    List<AlarmTypeResultPojo> getAll();
+    List<SoarEventTypeResult> getAll();
 
 }

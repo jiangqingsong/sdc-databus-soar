@@ -14,16 +14,16 @@ public class ResultUtil {
      */
     public static Result success(Object object){
         Result result = new Result();
-        result.setResultCode(ResultEnum._SUCCESS.getEnumCode());
-        result.setResultMsg(ResultEnum._SUCCESS.getEnumMsg());
+        result.setCode(ResultEnum._SUCCESS.getEnumCode());
+        result.setMsg(ResultEnum._SUCCESS.getEnumMsg());
         result.setData(object);
         return result;
     }
 
     public static String successStr(Object object){
         Result result = new Result();
-        result.setResultCode(ResultEnum._SUCCESS.getEnumCode());
-        result.setResultMsg(ResultEnum._SUCCESS.getEnumMsg());
+        result.setCode(ResultEnum._SUCCESS.getEnumCode());
+        result.setMsg(ResultEnum._SUCCESS.getEnumMsg());
         result.setData(object);
         return JSON.toJSONString(result);
     }
@@ -35,16 +35,16 @@ public class ResultUtil {
      */
     public static Result error(ResultEnum exceptionEnum){
         Result result = new Result();
-        result.setResultCode(exceptionEnum.getEnumCode());
-        result.setResultMsg(exceptionEnum.getEnumMsg());
+        result.setCode(exceptionEnum.getEnumCode());
+        result.setMsg(exceptionEnum.getEnumMsg());
         result.setData(null);
         return result;
     }
 
     public static String errorStr(ResultEnum exceptionEnum){
         Result result = new Result();
-        result.setResultCode(exceptionEnum.getEnumCode());
-        result.setResultMsg(exceptionEnum.getEnumMsg());
+        result.setCode(exceptionEnum.getEnumCode());
+        result.setMsg(exceptionEnum.getEnumMsg());
         result.setData(null);
         return JSON.toJSONString(result);
     }
@@ -56,16 +56,16 @@ public class ResultUtil {
      */
     public static Result exception(String exceptionMsg){
         Result result = new Result();
-        result.setResultCode(ResultEnum._SERVER_EXCEPTION.getEnumCode());
-        result.setResultMsg(ResultEnum._SERVER_EXCEPTION.getEnumMsg() + ":" + exceptionMsg);
+        result.setCode(ResultEnum._SERVER_EXCEPTION.getEnumCode());
+        result.setMsg(ResultEnum._SERVER_EXCEPTION.getEnumMsg() + ":" + exceptionMsg);
         result.setData(null);
         return result;
     }
 
     public static String exceptionStr(String exceptionMsg){
         Result result = new Result();
-        result.setResultCode(ResultEnum._SERVER_EXCEPTION.getEnumCode());
-        result.setResultMsg(ResultEnum._SERVER_EXCEPTION.getEnumMsg() + ":" + exceptionMsg);
+        result.setCode(ResultEnum._SERVER_EXCEPTION.getEnumCode());
+        result.setMsg(ResultEnum._SERVER_EXCEPTION.getEnumMsg() + ":" + exceptionMsg);
         result.setData(null);
         return JSON.toJSONString(result);
     }

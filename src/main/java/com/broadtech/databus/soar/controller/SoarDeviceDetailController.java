@@ -3,7 +3,9 @@ package com.broadtech.databus.soar.controller;
 
 import com.broadtech.databus.soar.common.ResultUtil;
 import com.broadtech.databus.soar.entity.SoarDeviceDetail;
+import com.broadtech.databus.soar.pojo.PageChunk;
 import com.broadtech.databus.soar.service.ISoarDeviceDetailService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +35,12 @@ public class SoarDeviceDetailController {
      * @param typeId
      * @return
      */
-    @RequestMapping(value = "/selectDevByTypeId/{typeId}", method = RequestMethod.GET)
-    public ResponseEntity<List<SoarDeviceDetail>> selectDevByTypeId(@PathVariable("typeId") String typeId){
-        List<SoarDeviceDetail> SoarDevices = soarDeviceDetailService.selectAll(typeId);
+    @RequestMapping(value = "/selectDevByTypeId/{typeId}", method = RequestMethod.POST)
+    public ResponseEntity<PageChunk<SoarDeviceDetail>> selectDevByTypeId(@PathVariable("typeId") String typeId,
+                                                                    @RequestParam("devName") String devName,
+                                                                    @RequestParam(value = "current", defaultValue = "1") int current,
+                                                                    @RequestParam(value = "size", defaultValue = "20") int size){
+        PageChunk<SoarDeviceDetail> SoarDevices = soarDeviceDetailService.selectAll(typeId, devName, current, size);
         return new ResponseEntity(ResultUtil.success(SoarDevices), HttpStatus.OK);
     }
 

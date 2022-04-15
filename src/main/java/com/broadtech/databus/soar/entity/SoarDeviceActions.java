@@ -82,5 +82,30 @@ public class SoarDeviceActions implements Serializable {
     @TableField(exist = false)
     private String deviceType;
 
+    /**
+     * 设备厂家
+     */
+    @TableField(exist = false)
+    private String manufacture;
+    /**
+     * 设备model
+     */
+    @TableField(exist = false)
+    private String model;
+    /**
+     * 设备version
+     */
+    @TableField(exist = false)
+    private String version;
+    /**
+     * 设备SN
+     */
+    @TableField(exist = false)
+    private String sn;
+    /**
+     * 设备URL
+     */
+    @TableField(exist = false)
+    private String devUrl;
 
 }

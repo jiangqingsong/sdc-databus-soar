@@ -2,6 +2,7 @@ package com.broadtech.databus.soar.service;
 
 import com.broadtech.databus.soar.entity.SoarDeviceDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.broadtech.databus.soar.pojo.PageChunk;
 
 import java.util.List;
 
@@ -16,11 +17,14 @@ import java.util.List;
 public interface ISoarDeviceDetailService extends IService<SoarDeviceDetail> {
 
     /**
-     * 根据类型ID查询所有设备列表
+     * 分页查询：设备列表
      * @param deviceTypeId
+     * @param devName
+     * @param current
+     * @param size
      * @return
      */
-    List<SoarDeviceDetail> selectAll(String deviceTypeId);
+    PageChunk<SoarDeviceDetail> selectAll(String deviceTypeId, String devName, int current, int size);
 
     /**
      * 修改设备信息

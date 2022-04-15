@@ -5,6 +5,7 @@ import com.broadtech.databus.soar.entity.AlarmType;
 import com.broadtech.databus.soar.mapper.AlarmTypeMapper;
 import com.broadtech.databus.soar.pojo.AlarmTypeResultPojo;
 import com.broadtech.databus.soar.service.IAlarmTypeService;
+import com.broadtech.databus.soar.service.SoarEventTypeResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class AlarmTypeImpl extends ServiceImpl<AlarmTypeMapper, AlarmType> imple
     private AlarmTypeMapper alarmTypeMapper;
 
     @Override
-    public List<AlarmTypeResultPojo> getAll() {
+    public List<SoarEventTypeResult> getAll() {
         /*QueryWrapper<AlarmType> queryWrapper = new QueryWrapper<>();
         List<AlarmType> alarmTypeList = alarmTypeMapper.selectList(queryWrapper);*/
         return alarmTypeMapper.getAll();

@@ -58,6 +58,11 @@ public class SoarDeviceDetail implements Serializable {
     private String version;
 
     /**
+     * 设备SN
+     */
+    private String sn;
+
+    /**
      * 设备访问地址
      */
     private String url;

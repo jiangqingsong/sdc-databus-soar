@@ -1,8 +1,12 @@
 package com.broadtech.databus.soar.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.broadtech.databus.soar.entity.SoarDeviceActions;
 import com.broadtech.databus.soar.entity.SoarDeviceDetail;
+import com.broadtech.databus.soar.entity.SoarDeviceInterfaces;
 import com.broadtech.databus.soar.mapper.SoarDeviceDetailMapper;
+import com.broadtech.databus.soar.pojo.PageChunk;
 import com.broadtech.databus.soar.pojo.TrxLoginResInfo;
 import com.broadtech.databus.soar.service.ISoarDeviceDetailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -31,10 +35,20 @@ public class SoarDeviceDetailServiceImpl extends ServiceImpl<SoarDeviceDetailMap
     private FirewallServiceImpl firewallServiceImpl;
 
     @Override
-    public List<SoarDeviceDetail> selectAll(String deviceTypeId) {
+    public PageChunk<SoarDeviceDetail> selectAll(String deviceTypeId, String devName, int current, int size) {
         QueryWrapper<SoarDeviceDetail> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("device_type_id", deviceTypeId);
-        return soarDeviceDetailMapper.selectList(queryWrapper);
+        if(!"".equals(devName)){
+            queryWrapper.like("device_name", devName);
+        }
+        Page<SoarDeviceDetail> page = new Page<>(current, size);
+        Page<SoarDeviceDetail> pageRes = soarDeviceDetailMapper.selectPage(page, queryWrapper);
+        PageChunk<SoarDeviceDetail> pageChunk = new PageChunk<>();
+        pageChunk.setContent(pageRes.getRecords());
+        pageChunk.setPageNumber(current);
+        pageChunk.setTotalPages((int)pageRes.getPages());
+        pageChunk.setTotalElements(pageRes.getTotal());
+        return pageChunk;
     }
 
     @Override
@@ -53,7 +67,7 @@ public class SoarDeviceDetailServiceImpl extends ServiceImpl<SoarDeviceDetailMap
     /**
      * 自动更新天融信防火墙设备状态
      */
-    @Scheduled(cron = "* */5 * * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void autoUpdateTrxDeviceStatus(){
         TrxLoginResInfo resInfo = firewallServiceImpl.getLoginTrxFirewall();
         if(resInfo != null){//登陆成功，设备在线

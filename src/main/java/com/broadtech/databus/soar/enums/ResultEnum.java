@@ -7,7 +7,7 @@ public enum ResultEnum {
 
     _UNKNOWN_SERVER_ERROR(-2, "未知错误"),
     _SERVER_EXCEPTION(-3, "系统异常"),
-    _SUCCESS(0, "执行成功"),
+    _SUCCESS(200, "执行成功"),
     _FAILED(-1, "执行失败"),
     _Baseline_NOT_NULL(1002, "基线模板中的基线不为空，无法删除"),
     _BAD_REQUEST(1001, "参数不正确"),
