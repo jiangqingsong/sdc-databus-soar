@@ -2,4 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.broadtech.databus.soar.mapper.AlarmTypeMapper">
 
+    <resultMap type="com.broadtech.databus.soar.service.SoarEventTypeResult" id="BaseEventTypeResultMap">
+        <id column="id1" property="value"/>
+        <result column="name1" property="label"/>
+        <collection property="children" ofType="com.broadtech.databus.soar.service.SoarEventTypeResult">
+            <id column="id2" property="value"/>
+            <result column="name2" property="label"/>
+            <collection property="children" ofType="com.broadtech.databus.soar.service.SoarEventTypeResult">
+                <id column="id3" property="value"/>
+                <result column="name3" property="label"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="getAll" resultMap="BaseEventTypeResultMap">
+        select
+            sett1.type_id as id1,
+            sett1.event_type_name as name1,
+            sett2.type_id as id2,
+            sett2.event_type_name as name2,
+            sett3.type_id as id3,
+            sett3.event_type_name as name3
+        from alarm_type sett1
+                 left join alarm_type sett2 on sett1.type_id=sett2.event_type_switch
+                 left join alarm_type sett3 on sett2.type_id=sett3.event_type_switch
+        where sett1.event_type_switch='-1' order by sett1.type_id
+    </select>
 </mapper>

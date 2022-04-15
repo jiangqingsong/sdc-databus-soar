@@ -69,7 +69,9 @@ public class SoarDeviceDetailController {
         Integer n = soarDeviceDetailService.saveDevice(deviceDetail);
         if(n > 0){
             return new ResponseEntity(ResultUtil.success("新增成功！"), HttpStatus.OK);
-        }else {
+        }else if(n == 0){
+            return new ResponseEntity(ResultUtil.success("新增失败，设备名称已存在！"), HttpStatus.OK);
+        } else {
             return new ResponseEntity(ResultUtil.exception("新增失败！"), HttpStatus.FAILED_DEPENDENCY);
         }
     }

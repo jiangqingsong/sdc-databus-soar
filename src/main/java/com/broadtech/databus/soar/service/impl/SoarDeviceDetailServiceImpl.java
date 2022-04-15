@@ -58,6 +58,13 @@ public class SoarDeviceDetailServiceImpl extends ServiceImpl<SoarDeviceDetailMap
 
     @Override
     public Integer saveDevice(SoarDeviceDetail deviceDetail) {
+        String deviceName = deviceDetail.getDeviceName();
+        QueryWrapper<SoarDeviceDetail> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("device_name", deviceName);
+        List<SoarDeviceDetail> soarDeviceDetails = soarDeviceDetailMapper.selectList(queryWrapper);
+        if(soarDeviceDetails.size() > 0){
+            return 0;
+        }
         String deviceId = UUID.randomUUID().toString().toLowerCase().replaceAll("-", "");
         deviceDetail.setDeviceId(deviceId);
         return soarDeviceDetailMapper.insert(deviceDetail);
