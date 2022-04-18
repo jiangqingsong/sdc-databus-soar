@@ -9,6 +9,153 @@ public interface IFirewallService {
 
 
     /**
+     * 获取所有策略组
+     * @return
+     */
+    String firewallGroupPolicy();
+
+
+    /**
+     * 添加策略组
+     * @param name 添加的策略组名称
+     * @param before 插入时选中当前策略组名称
+     * @return
+     */
+    String firewallGroupPolicyAdd(String name, String before);
+
+    /**
+     * 策略组名称重命名
+     * @param oldName 策略组原名称
+     * @param newName 策略组新名称
+     * @return
+     */
+    String firewallGroupPolicyRename(String oldName, String newName);
+
+    /**
+     * 移动策略组(注：空策略组不能参与移动)
+     * @param name 当前要移动的策略组名称
+     * @param before 目标策略组
+     * @return
+     */
+    String firewallGroupPolicyMoveBefore(String name, String before);
+
+    /**
+     * 移动到策略组之后(注：空策略组不能参与移动)
+     * @param name 当前要移动的策略组名称
+     * @param after 目标策略组
+     * @return
+     */
+    String firewallGroupPolicyMoveAfter(String name, String after);
+
+    /**
+     * 删除策略组
+     * @param name 删除的策略组名称
+     * @return
+     */
+    String firewallGroupPolicyDelete(String name);
+
+
+    /**
+     * 清空所有策略组
+     * @return
+     */
+    String firewallGroupPolicyClean();
+
+    /**
+     * 获取所有策略
+     * @return
+     */
+    String firewallPolicyShow();
+
+    /**
+     * 根据策略组名称获取所有策略
+     * @param groupName 策略组名称
+     * @return
+     */
+    String firewallPolicyShowByGroup(String groupName);
+
+    /**
+     * 添加Accept策略
+     * @param name
+     * @return
+     */
+    String firewallPolicyAcceptAdd(String name);
+
+    /**
+     * 添加deny策略
+     * @param name
+     * @return
+     */
+    String firewallPolicyDenyAdd(String name);
+
+    /**
+     * 插入Accept策略
+     * @param name 插入的策略名称
+     * @param before 目标已有的策略名称
+     * @return
+     */
+    String firewallPolicyAcceptInsert(String name, String before);
+    /**
+     * 插入Deny策略
+     * @param name 插入的策略名称
+     * @param before 目标已有的策略名称
+     * @return
+     */
+    String firewallPolicyDenyInsert(String name, String before);
+
+    /**
+     * 修改策略
+     * @param name 策略名称
+     * @param actionType 动作类型 1 accept 2 deny
+     * @return
+     */
+    String firewallPolicyModify(String name, String actionType);
+
+    /**
+     * 移动到策略之前
+     * @param name 当前要移动的策略名称
+     * @param before 目标策略
+     * @return
+     */
+    String firewallPolicyMoveBefore(String name, String before);
+
+    /**
+     * 移动到策略之后
+     * @param name 当前要移动的策略名称
+     * @param after 目标策略
+     * @return
+     */
+    String firewallPolicyMoveAfter(String name, String after);
+
+    /**
+     * 删除策略
+     * @param name
+     * @return
+     */
+    String firewallPolicyDeleteLots(String name);
+
+    /**
+     * 启用策略
+     * @param name
+     * @return
+     */
+    String firewallPolicyEnable(String name);
+
+    /**
+     * 禁用策略
+     * @param name
+     * @return
+     */
+    String firewallPolicyDisable(String name);
+
+
+    /**
+     * 策略清空
+     * @return
+     */
+    String firewallPolicyClean();
+
+    /**
      *
      * @return
      */

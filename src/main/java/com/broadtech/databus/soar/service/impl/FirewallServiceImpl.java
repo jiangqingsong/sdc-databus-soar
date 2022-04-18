@@ -44,6 +44,631 @@ public class FirewallServiceImpl implements IFirewallService {
     private ExecutorService executorService = Executors.newFixedThreadPool(5);
 
     @Override
+    public String firewallGroupPolicy() {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+//        TrxLoginResInfo resInfo = trxLoginResInfo;
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_group_show]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_GROUP_POLICY_SHOW, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallGroupPolicyAdd(String name, String before) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_group_add][name]", name);
+            params.put("commands[0][firewall_group_add][before]", before);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_GROUP_POLICY_ADD, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallGroupPolicyRename(String oldName, String newName) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_group_rename][oldname]", oldName);
+            params.put("commands[0][firewall_group_rename][newname]", newName);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_GROUP_POLICY_RENAME, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallGroupPolicyMoveBefore(String name, String before) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_group_before_move][0]", name);
+            params.put("commands[0][firewall_group_before_move][before]", before);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_GROUP_POLICY_MOVE_BEFORE, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallGroupPolicyMoveAfter(String name, String after) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_group_after_move][0]", name);
+            params.put("commands[0][firewall_group_after_move][after]", after);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_GROUP_POLICY_MOVE_AFTER, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallGroupPolicyDelete(String name) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_group_delete_name][0][name]", name);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_GROUP_POLICY_DELETE_LOTS, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallGroupPolicyClean() {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_group_clean]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_GROUP_POLICY_CLEAN, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyShow() {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_show]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_SHOW, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyShowByGroup(String groupName) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_group_show_name][name]", groupName);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_SHOW_BY_GROUP, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyAcceptAdd(String name) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_add][name]", name);
+            params.put("commands[0][firewall_policy_add][action]", "accept");
+            params.put("commands[0][firewall_policy_add][dstopts]", "");
+            params.put("commands[0][firewall_policy_add][enable]", "");
+            params.put("commands[0][firewall_policy_add][comment]", "");
+            params.put("commands[0][firewall_policy_add][group_name]", "");
+            params.put("commands[0][firewall_policy_add][hopopts]", "");
+            params.put("commands[0][firewall_policy_add][log]", "");
+            params.put("commands[0][firewall_policy_add][permanent]", "");
+            params.put("commands[0][firewall_policy_add][routing]", "");
+            params.put("commands[0][firewall_policy_add][slog]", "");
+            params.put("commands[0][firewall_policy_add][traffic-statistic]", "");
+            params.put("commands[0][firewall_policy_add][srcarea]", "");
+            params.put("commands[0][firewall_policy_add][dstarea]", "");
+            params.put("commands[0][firewall_policy_add][src]", "");
+            params.put("commands[0][firewall_policy_add][dst]", "");
+            params.put("commands[0][firewall_policy_add][service]", "");
+            params.put("commands[0][firewall_policy_add][schedule]", "");
+            params.put("commands[0][firewall_policy_add][role]", "");
+            params.put("commands[0][firewall_policy_add][orig_dst]", "");
+            params.put("commands[0][firewall_policy_add][max_active_session]", "");
+            params.put("commands[0][firewall_policy_add][srcport]", "");
+            params.put("commands[0][firewall_policy_add][app]", "");
+            params.put("commands[0][firewall_policy_add][domain]", "");
+            params.put("commands[0][firewall_policy_add][authportal]", "");
+            params.put("commands[0][firewall_policy_add][profile]", "");
+            params.put("commands[0][firewall_policy_add][apt]", "");
+            params.put("commands[0][firewall_policy_add][dlp]", "");
+            params.put("commands[0][firewall_policy_add][session_time]", "");
+            params.put("commands[0][firewall_policy_add][anti-proxy]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_ADD, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyDenyAdd(String name) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_add][name]", name);
+            params.put("commands[0][firewall_policy_add][action]", "deny");
+            params.put("commands[0][firewall_policy_add][dstopts]", "");
+            params.put("commands[0][firewall_policy_add][enable]", "");
+            params.put("commands[0][firewall_policy_add][comment]", "");
+            params.put("commands[0][firewall_policy_add][group_name]", "");
+            params.put("commands[0][firewall_policy_add][hopopts]", "");
+            params.put("commands[0][firewall_policy_add][log]", "");
+            params.put("commands[0][firewall_policy_add][permanent]", "");
+            params.put("commands[0][firewall_policy_add][routing]", "");
+            params.put("commands[0][firewall_policy_add][slog]", "");
+            params.put("commands[0][firewall_policy_add][traffic-statistic]", "");
+            params.put("commands[0][firewall_policy_add][srcarea]", "");
+            params.put("commands[0][firewall_policy_add][dstarea]", "");
+            params.put("commands[0][firewall_policy_add][src]", "");
+            params.put("commands[0][firewall_policy_add][dst]", "");
+            params.put("commands[0][firewall_policy_add][service]", "");
+            params.put("commands[0][firewall_policy_add][schedule]", "");
+            params.put("commands[0][firewall_policy_add][role]", "");
+            params.put("commands[0][firewall_policy_add][orig_dst]", "");
+            params.put("commands[0][firewall_policy_add][max_active_session]", "");
+            params.put("commands[0][firewall_policy_add][srcport]", "");
+            params.put("commands[0][firewall_policy_add][app]", "");
+            params.put("commands[0][firewall_policy_add][domain]", "");
+            params.put("commands[0][firewall_policy_add][authportal]", "");
+            params.put("commands[0][firewall_policy_add][profile]", "");
+            params.put("commands[0][firewall_policy_add][apt]", "");
+            params.put("commands[0][firewall_policy_add][dlp]", "");
+            params.put("commands[0][firewall_policy_add][session_time]", "");
+            params.put("commands[0][firewall_policy_add][anti-proxy]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_ADD, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyAcceptInsert(String name, String before) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+            String authid = resInfo.getAuthid();
+            String token = resInfo.getToken();
+            String referer = resInfo.getReferer();
+            CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+            if (resInfo != null) {
+                //封装参数
+                Map<String, Object> params = new HashMap<>();
+                params.put("userMark", authid);
+                params.put("token", token);
+                params.put("commands[0][firewall_policy_add][name]", name);
+                params.put("commands[0][firewall_policy_add][action]", "accept");
+                params.put("commands[0][firewall_policy_add][dstopts]", "");
+                params.put("commands[0][firewall_policy_add][enable]", "");
+                params.put("commands[0][firewall_policy_add][comment]", "");
+                params.put("commands[0][firewall_policy_add][group_name]", "");
+                params.put("commands[0][firewall_policy_add][hopopts]", "");
+                params.put("commands[0][firewall_policy_add][log]", "");
+                params.put("commands[0][firewall_policy_add][permanent]", "");
+                params.put("commands[0][firewall_policy_add][routing]", "");
+                params.put("commands[0][firewall_policy_add][slog]", "");
+                params.put("commands[0][firewall_policy_add][traffic-statistic]", "");
+                params.put("commands[0][firewall_policy_add][srcarea]", "");
+                params.put("commands[0][firewall_policy_add][dstarea]", "");
+                params.put("commands[0][firewall_policy_add][src]", "");
+                params.put("commands[0][firewall_policy_add][dst]", "");
+                params.put("commands[0][firewall_policy_add][service]", "");
+                params.put("commands[0][firewall_policy_add][schedule]", "");
+                params.put("commands[0][firewall_policy_add][role]", "");
+                params.put("commands[0][firewall_policy_add][orig_dst]", "");
+                params.put("commands[0][firewall_policy_add][max_active_session]", "");
+                params.put("commands[0][firewall_policy_add][srcport]", "");
+                params.put("commands[0][firewall_policy_add][app]", "");
+                params.put("commands[0][firewall_policy_add][domain]", "");
+                params.put("commands[0][firewall_policy_add][authportal]", "");
+                params.put("commands[0][firewall_policy_add][profile]", "");
+                params.put("commands[0][firewall_policy_add][apt]", "");
+                params.put("commands[0][firewall_policy_add][dlp]", "");
+                params.put("commands[0][firewall_policy_add][before]", "");
+                params.put("commands[0][firewall_policy_add][session_time]", "");
+                params.put("commands[0][firewall_policy_add][anti-proxy]", "");
+                Map<String, String> header = new HashMap<>();
+                header.put("Referer", referer);
+                String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_SHOW_BY_GROUP, params, httpClient));
+                logoutTrxFirewall(authid, token, referer, httpClient);
+                return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyDenyInsert(String name, String before) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_add][name]", name);
+            params.put("commands[0][firewall_policy_add][action]", "accept");
+            params.put("commands[0][firewall_policy_add][dstopts]", "");
+            params.put("commands[0][firewall_policy_add][enable]", "");
+            params.put("commands[0][firewall_policy_add][comment]", "");
+            params.put("commands[0][firewall_policy_add][group_name]", "");
+            params.put("commands[0][firewall_policy_add][hopopts]", "");
+            params.put("commands[0][firewall_policy_add][log]", "");
+            params.put("commands[0][firewall_policy_add][permanent]", "");
+            params.put("commands[0][firewall_policy_add][routing]", "");
+            params.put("commands[0][firewall_policy_add][slog]", "");
+            params.put("commands[0][firewall_policy_add][traffic-statistic]", "");
+            params.put("commands[0][firewall_policy_add][srcarea]", "");
+            params.put("commands[0][firewall_policy_add][dstarea]", "");
+            params.put("commands[0][firewall_policy_add][src]", "");
+            params.put("commands[0][firewall_policy_add][dst]", "");
+            params.put("commands[0][firewall_policy_add][service]", "");
+            params.put("commands[0][firewall_policy_add][schedule]", "");
+            params.put("commands[0][firewall_policy_add][role]", "");
+            params.put("commands[0][firewall_policy_add][orig_dst]", "");
+            params.put("commands[0][firewall_policy_add][max_active_session]", "");
+            params.put("commands[0][firewall_policy_add][srcport]", "");
+            params.put("commands[0][firewall_policy_add][app]", "");
+            params.put("commands[0][firewall_policy_add][domain]", "");
+            params.put("commands[0][firewall_policy_add][authportal]", "");
+            params.put("commands[0][firewall_policy_add][profile]", "");
+            params.put("commands[0][firewall_policy_add][apt]", "");
+            params.put("commands[0][firewall_policy_add][dlp]", "");
+            params.put("commands[0][firewall_policy_add][before]", "");
+            params.put("commands[0][firewall_policy_add][session_time]", "");
+            params.put("commands[0][firewall_policy_add][anti-proxy]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_SHOW_BY_GROUP, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyModify(String name, String actionType) {
+        String action = "";
+        if("1".equals(actionType)){
+            action = "accept";
+        }else if("2".equals(actionType)){
+            action = "deny";
+        }else {
+            return null;
+        }
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_modify][name]", name);
+            params.put("commands[0][firewall_policy_modify][new_name]", "");
+            params.put("commands[0][firewall_policy_modify][action]", action);
+            params.put("commands[0][firewall_policy_modify][enable]", "");
+            params.put("commands[0][firewall_policy_modify][log]", "");
+            params.put("commands[0][firewall_policy_modify][srcarea]", "");
+            params.put("commands[0][firewall_policy_modify][dstarea]", "");
+            params.put("commands[0][firewall_policy_modify][src]", "");
+            params.put("commands[0][firewall_policy_modify][dst]", "");
+            params.put("commands[0][firewall_policy_modify][comment]", "");
+            params.put("commands[0][firewall_policy_modify][service]", "");
+            params.put("commands[0][firewall_policy_modify][schedule]", "");
+            params.put("commands[0][firewall_policy_modify][role]", "");
+            params.put("commands[0][firewall_policy_modify][app]", "");
+            params.put("commands[0][firewall_policy_modify][group_name]", "");
+            params.put("commands[0][firewall_policy_modify][orig_dst]", "");
+            params.put("commands[0][firewall_policy_modify][max_active_session]", "");
+            params.put("commands[0][firewall_policy_modify][permanent]", "");
+            params.put("commands[0][firewall_policy_modify][traffic-statistic]", "");
+            params.put("commands[0][firewall_policy_modify][hopopts]", "");
+            params.put("commands[0][firewall_policy_modify][dstopts]", "");
+            params.put("commands[0][firewall_policy_modify][routing]", "");
+            params.put("commands[0][firewall_policy_modify][slog]", "");
+            params.put("commands[0][firewall_policy_modify][profile]", "");
+            params.put("commands[0][firewall_policy_modify][srcport]", "");
+            params.put("commands[0][firewall_policy_modify][domain]", "");
+            params.put("commands[0][firewall_policy_modify][apt]", "");
+            params.put("commands[0][firewall_policy_modify][dlp]", "");
+            params.put("commands[0][firewall_policy_modify][authportal]", "");
+            params.put("commands[0][firewall_policy_modify][session_time]", "");
+            params.put("commands[0][firewall_policy_modify][anti-proxy]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_MODIFY, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyMoveBefore(String name, String before) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_before_move_by_name][0]", name);
+            params.put("commands[0][firewall_policy_before_move_by_name][before]", before);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_MOVE_BEFORE, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyMoveAfter(String name, String after) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_after_move_by_name][0]", name);
+            params.put("commands[0][firewall_policy_after_move_by_name][after]", after);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_MOVE_AFTER, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyDeleteLots(String name) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_delete][0][name]", name);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_DELETE, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyEnable(String name) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_modify][0][name]", name);
+            params.put("commands[0][firewall_policy_modify][0][enable]", "yes");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_DELETE, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyDisable(String name) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_modify][0][name]", name);
+            params.put("commands[0][firewall_policy_modify][0][enable]", "no");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_DELETE, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String firewallPolicyClean() {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][firewall_policy_clean]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.FIREWALL_POLICY_CLEAN, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
     public Integer isOnline() {
         TrxLoginResInfo resInfo = getLoginTrxFirewall();
         if(resInfo != null){//登陆成功，设备在线
@@ -118,7 +743,7 @@ public class FirewallServiceImpl implements IFirewallService {
             Map<String, Object> params = new HashMap<>();
             params.put("userMark", authid);
             params.put("token", token);
-            params.put("commands[0][pf_blacklist_show_all]:", "");
+            params.put("commands[0][pf_blacklist_show_all]", "");
             Map<String, String> header = new HashMap<>();
             header.put("Referer", referer);
             String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.BLOCK_LIST_SHOW_ALL, params, httpClient));
@@ -143,11 +768,11 @@ public class FirewallServiceImpl implements IFirewallService {
             Map<String, String> header = new HashMap<>();
             header.put("Referer", referer);
 
-            params.put("commands[0][pf_blacklist_add][sip]::", sip);
-            params.put("commands[0][pf_blacklist_add][sport]::", sport);
-            params.put("commands[0][pf_blacklist_add][dip]::", dip);
-            params.put("commands[0][pf_blacklist_add][dport]::", dport);
-            params.put("commands[0][pf_blacklist_add][l4_protocol]::", protocol);
+            params.put("commands[0][pf_blacklist_add][sip]", sip);
+            params.put("commands[0][pf_blacklist_add][sport]", sport);
+            params.put("commands[0][pf_blacklist_add][dip]", dip);
+            params.put("commands[0][pf_blacklist_add][dport]", dport);
+            params.put("commands[0][pf_blacklist_add][l4_protocol]", protocol);
 
             String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.BLOCK_LIST_FIVE_TUPLE_ADD, params, httpClient));
 
@@ -170,8 +795,8 @@ public class FirewallServiceImpl implements IFirewallService {
             Map<String, Object> params = new HashMap<>();
             params.put("userMark", resInfo.getAuthid());
             params.put("token", resInfo.getToken());
-            params.put("commands[0][pf_blacklist_add][ip_start]::", ip_start);
-            params.put("commands[0][pf_blacklist_add][ip_end]::", ip_end);
+            params.put("commands[0][pf_blacklist_add][ip_start]", ip_start);
+            params.put("commands[0][pf_blacklist_add][ip_end]", ip_end);
             Map<String, String> header = new HashMap<>();
             header.put("Referer", resInfo.getReferer());
             String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.BLOCK_LIST_RANGE_ADD, params, resInfo.getHttpClient()));
@@ -194,7 +819,7 @@ public class FirewallServiceImpl implements IFirewallService {
             Map<String, Object> params = new HashMap<>();
             params.put("userMark", resInfo.getAuthid());
             params.put("token", resInfo.getToken());
-            params.put("commands[0][pf_blacklist_app_add][name]::", appName);
+            params.put("commands[0][pf_blacklist_app_add][name]", appName);
 
             Map<String, String> header = new HashMap<>();
             header.put("Referer", resInfo.getReferer());
@@ -219,7 +844,7 @@ public class FirewallServiceImpl implements IFirewallService {
             Map<String, Object> params = new HashMap<>();
             params.put("userMark", resInfo.getAuthid());
             params.put("token", resInfo.getToken());
-            params.put("commands[0][[pf_blacklist_role_add][name]::", usesrName);
+            params.put("commands[0][[pf_blacklist_role_add][name]", usesrName);
 
             Map<String, String> header = new HashMap<>();
             header.put("Referer", resInfo.getReferer());
@@ -244,7 +869,7 @@ public class FirewallServiceImpl implements IFirewallService {
             Map<String, Object> params = new HashMap<>();
             params.put("userMark", resInfo.getAuthid());
             params.put("token", resInfo.getToken());
-            params.put("commands[0][[pf_blacklist_mac_add][name]::", appName);
+            params.put("commands[0][[pf_blacklist_mac_add][name]", appName);
 
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();

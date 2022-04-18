@@ -23,6 +23,45 @@ public class TrxInterfaceConstant {
     public static final String BLOCK_LIST_DELETE = "/home/default/blackListSpread/deleteLots/";
     public static final String BLOCK_LIST_CLEAN_LOTS = "/home/default/blackListSpread/cleanLots/";
 
+    //访问控制
+    public static final String FIREWALL_GROUP_POLICY_SHOW = "/home/default/firewallGroupPolicy/";
+    public static final String FIREWALL_GROUP_POLICY_ADD = "/home/default/firewallGroupPolicy/";
+    public static final String FIREWALL_GROUP_POLICY_RENAME = "/home/default/firewallGroupPolicy/reName/";
+    public static final String FIREWALL_GROUP_POLICY_MOVE_BEFORE = "/home/default/firewallGroupPolicy/movesBefore/";
+    public static final String FIREWALL_GROUP_POLICY_MOVE_AFTER = "/home/default/firewallGroupPolicy/movesAfter/";
+    public static final String FIREWALL_GROUP_POLICY_INSERT = "/home/default/firewallGroupPolicy/";
+    public static final String FIREWALL_GROUP_POLICY_DELETE_LOTS = "/home/default/firewallGroupPolicy/deleteLots/";
+    public static final String FIREWALL_GROUP_POLICY_CLEAN = "/home/default/firewallGroupPolicy/clean/";
+
+    //策略
+    //显示所有策略
+    public static final String FIREWALL_POLICY_SHOW = "/home/default/firewallPolicy/showAllPolicy/";
+    //根据策略组显示
+    public static final String FIREWALL_POLICY_SHOW_BY_GROUP = "/home/default/firewallPolicy/showGroupSingle/";
+    //策略插入
+    public static final String FIREWALL_POLICY_ADD = "/home/default/firewallPolicy/firewallAdd/";
+    //策略编辑
+    public static final String FIREWALL_POLICY_MODIFY = "/home/default/firewallPolicy/firewallModify/";
+    //移动
+    //移动到策略之前
+    public static final String FIREWALL_POLICY_MOVE_BEFORE = "/home/default/firewallPolicy/movesBefore/";
+    //移动到策略之后
+    public static final String FIREWALL_POLICY_MOVE_AFTER = "/home/default/firewallPolicy/movesAfter/";
+    //策略删除
+    public static final String FIREWALL_POLICY_DELETE = "/home/default/firewallPolicy/deleteLots/";
+    //启用
+    public static final String FIREWALL_POLICY_ENABLE = "/home/default/firewallPolicy/enable/";
+    //禁用
+    public static final String FIREWALL_POLICY_DISABLE = "/home/default/firewallPolicy/disable/";
+    //范围查询
+    public static final String FIREWALL_POLICY_SEARCH_WEBUI = "/home/default/firewallPolicy/searchWebui/";
+    //精准查询
+    public static final String FIREWALL_POLICY_SEARCH = "/home/default/firewallPolicy/search/";
+    //清空策略
+    public static final String FIREWALL_POLICY_CLEAN = "/home/default/firewallPolicy/clean/";
+
+
+
 
 
 
