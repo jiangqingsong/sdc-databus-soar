@@ -1,20 +1,20 @@
 
 
 server:
-  port: 30013
+  port: ${port:30013}
 spring:
   application:
-    name: SDC-DATABUS-SOAR
+    name: ${app-name:SDC-DATABUS-SOAR}
   datasource:
-    url: jdbc:mysql://192.168.5.93:3306/smop-sdc?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
-    username: root
-    password: root
+    url: jdbc:mysql://${db-url:192.168.5.93:3306/smop-sdc}?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: ${username:root}
+    password: ${password:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.5.94:8848
-        group: ${NACOS_GROUP:sbmp}
+        server-addr: ${nacos-server:192.168.5.94:8848}
+        group: ${NACOS_GROUP:soar}
 
 mybatis:
   mapper-locations:
