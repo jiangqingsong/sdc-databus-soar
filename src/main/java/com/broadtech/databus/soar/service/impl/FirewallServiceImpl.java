@@ -37,6 +37,8 @@ public class FirewallServiceImpl implements IFirewallService {
     @Autowired
     private SoarDeviceDetailMapper soarDeviceDetailMapper;
 
+    @Autowired
+
     private String URL = "";
     private TrxLoginResInfo trxLoginResInfo;
 
@@ -668,20 +670,6 @@ public class FirewallServiceImpl implements IFirewallService {
         return null;
     }
 
-    @Override
-    public Integer isOnline() {
-        TrxLoginResInfo resInfo = getLoginTrxFirewall();
-        if(resInfo != null){//登陆成功，设备在线
-            String authid = resInfo.getAuthid();
-            String token = resInfo.getToken();
-            String referer = resInfo.getReferer();
-            CloseableHttpClient httpClient = resInfo.getHttpClient();
-            logoutTrxFirewall(authid, token, referer, httpClient);
-            return 1;
-        }else {
-            return 0;
-        }
-    }
 
     @Override
     public Integer addAcceptPolicy(String name) {
@@ -1478,45 +1466,5 @@ public class FirewallServiceImpl implements IFirewallService {
         JSONObject resObject = JSONObject.parseObject(split[2]);
         resObject.put("data", unicode2String(resObject.get("data").toString()));
         return resObject.toJSONString();
-    }
-
-    //@Scheduled(cron = "0 */2 * * * ?")
-   /* public void autoGetTrxLoginInfo() {
-        TrxLoginResInfo resInfo = null;
-        Map<String, Object> resMap = loginTrxFirewall();
-        JSONObject loginResInfo = JSONObject.parseObject(resMap.get("resultJsonObj").toString());
-        //获取登陆成功的httpClient
-        CloseableHttpClient httpClient = (CloseableHttpClient) resMap.get("httpClient");
-        if (loginResInfo.getBoolean("result")) {
-            //获取访问其他api需要的referer
-            String referer = loginResInfo.getString("referer");
-            LOGGER.info("referer:{}", referer);
-            //获取访问其他api需要的authid
-            String authid = loginResInfo.getString("authid");
-            LOGGER.info("authid:{}", authid);
-            //获取token
-            String token = loginResInfo.getString("token");
-            LOGGER.info("token:{}", token);
-            resInfo = new TrxLoginResInfo();
-            resInfo.setReferer(referer);
-            resInfo.setAuthid(authid);
-            resInfo.setToken(token);
-            resInfo.setHttpClient(httpClient);
-        }
-
-        trxLoginResInfo = resInfo;
-    }*/
-
-    public static void main(String[] args) throws Exception {
-        FirewallServiceImpl firewallService = new FirewallServiceImpl();
-        //Map<String, String> stringStringMap = firewallService.loginTrxFirewall();
-        //System.out.println(firewallService.blockListFiveTupleAdd("1.1.192.2", "1235", "1.2.123.3", "3212", "12"));
-        //System.out.println(firewallService.blockListCleanStaticLots());
-        //
-        //System.out.println(firewallService.blockListFiveTupleDelete("1.1.192.1", "1234", "", "", ""));
-        //System.out.println(firewallService.blockListFiveTupleDisable("1.1.192.1", "1234", "1.2.123.2", "3211", "http"));
-//        System.out.println(firewallService.blockListShowAll());
-        System.out.println(firewallService.ipsRulesShow());
-
     }
 }

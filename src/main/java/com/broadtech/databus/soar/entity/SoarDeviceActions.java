@@ -55,6 +55,11 @@ public class SoarDeviceActions implements Serializable {
     private String params;
 
     /**
+     * 返回结果数据描述
+     */
+    private String responseDesc;
+
+    /**
      * 更新时间
      */
     private String updateTime;

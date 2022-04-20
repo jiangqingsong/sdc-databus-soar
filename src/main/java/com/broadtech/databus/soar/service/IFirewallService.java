@@ -156,11 +156,6 @@ public interface IFirewallService {
     String firewallPolicyClean();
 
     /**
-     *
-     * @return
-     */
-    Integer isOnline();
-    /**
      * 添加accept策略
      * @param name
      * @return
