@@ -61,6 +61,20 @@ public class TrxInterfaceConstant {
     public static final String FIREWALL_POLICY_CLEAN = "/home/default/firewallPolicy/clean/";
 
 
+    //病毒过滤
+    //病毒过滤添加
+    public static final String AV_POLICY_ADD = "/home/default/avPolicy/add/";
+    //获取病毒过滤策略
+    public static final String AV_POLICY_SHOW = "/home/default/avPolicy/";
+    //获取病毒过滤清空
+    public static final String AV_POLICY_CLEAN = "/home/default/avPolicy/clean/";
+
+    //IPS（入侵防御）
+    //规则集管理显示
+    public static final String IPS_RULE_SHOW = "/home/default/ipsRule/";
+    //规则添加
+    public static final String IPS_RULE_ADD = "/home/default/ipsRule/";
+
 
 
 

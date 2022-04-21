@@ -1,5 +1,7 @@
 package com.broadtech.databus.soar.service;
 
+import com.broadtech.databus.soar.pojo.AvPolicy;
+
 /**
  * @Author: leo.j
  * @desc: 防火墙能力
@@ -7,6 +9,44 @@ package com.broadtech.databus.soar.service;
  */
 public interface IFirewallService {
 
+
+    /**
+     * ips规则添加
+     * @param name 规则名
+     * @param classBy 分类方式
+     * @param content 规则配置
+     * @return
+     */
+    String ipsRuleAdd(String name, String classBy, String content);
+    /**
+     * ips规则集管理展示
+     * @return
+     */
+    String ipsRuleShow();
+
+    /**
+     * 病毒过滤策略清除
+     * @return
+     */
+    String avPolicyClean();
+    /**
+     * 病毒过滤策略删除
+     * @param policyName 策略名称
+     * @return
+     */
+    String avPolicyDelete(String policyName);
+    /**
+     * 获取病毒过滤策略
+     * @return
+     */
+    String avPolicyShow();
+
+    /**
+     * 病毒过滤策略添加
+     * @param avPolicy
+     * @return
+     */
+    String avPolicyAdd(AvPolicy avPolicy);
 
     /**
      * 获取所有策略组

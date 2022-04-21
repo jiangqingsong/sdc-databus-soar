@@ -8,6 +8,7 @@ import com.broadtech.databus.soar.constans.DeviceConstant;
 import com.broadtech.databus.soar.constans.TrxInterfaceConstant;
 import com.broadtech.databus.soar.entity.SoarDeviceDetail;
 import com.broadtech.databus.soar.mapper.SoarDeviceDetailMapper;
+import com.broadtech.databus.soar.pojo.AvPolicy;
 import com.broadtech.databus.soar.pojo.TrxLoginResInfo;
 import com.broadtech.databus.soar.service.IFirewallService;
 import org.apache.commons.lang.StringUtils;
@@ -46,9 +47,189 @@ public class FirewallServiceImpl implements IFirewallService {
     private ExecutorService executorService = Executors.newFixedThreadPool(5);
 
     @Override
+    public String ipsRuleAdd(String name, String classBy, String content) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][ngips_eventset_add][rule_type]", "ips");
+            params.put("commands[0][ngips_eventset_add][name]", name);
+            params.put("commands[0][ngips_eventset_add][classby]", classBy);
+            params.put("commands[0][ngips_eventset_add][content]", content);
+            params.put("commands[0][ngips_eventset_add][msg]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.IPS_RULE_ADD, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String ipsRuleShow() {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][ngips_eventset_show][rule_type]", "ips");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.IPS_RULE_SHOW, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String avPolicyClean() {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][ngfw_profile_av_clean]", "");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.AV_POLICY_CLEAN, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String avPolicyDelete(String policyName) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][ngfw_profile_av_delete][0][name]", policyName);
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.AV_POLICY_SHOW, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String avPolicyShow() {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            params.put("commands[0][ngfw_profile_av_show]", "");
+            params.put("commands[1][if]", "false");
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.AV_POLICY_SHOW, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
+    public String avPolicyAdd(AvPolicy avPolicy) {
+        TrxLoginResInfo resInfo = getLoginTrxFirewall();
+        String authid = resInfo.getAuthid();
+        String token = resInfo.getToken();
+        String referer = resInfo.getReferer();
+        CloseableHttpClient httpClient = resInfo.getHttpClient();
+
+        if (resInfo != null) {
+            //http  ftp  smtp  pop3  im
+            //封装参数
+            Map<String, Object> params = new HashMap<>();
+            params.put("userMark", authid);
+            params.put("token", token);
+            String policyName = avPolicy.getPolicyName();
+            params.put("commands[0][ngfw_profile_av_add][name]", policyName);
+            params.put("commands[0][ngfw_profile_av_add][comment]", avPolicy.getPolicyDesc());
+            params.put("commands[1][ngfw_profile_av_set_switch_1][name]", policyName);
+            params.put("commands[1][ngfw_profile_av_set_switch_1][protocol]", "http");
+            params.put("commands[1][ngfw_profile_av_set_switch_1][switch]", avPolicy.getHttpSwitch());
+            params.put("commands[2][ngfw_profile_av_set_protocol][name]", policyName);
+            params.put("commands[2][ngfw_profile_av_set_protocol][protocol]", "http");
+            params.put("commands[2][ngfw_profile_av_set_protocol][direction]", "");
+            params.put("commands[2][ngfw_profile_av_set_protocol][action]", "");
+            params.put("commands[3][ngfw_profile_av_set_switch][name]", policyName);
+            params.put("commands[3][ngfw_profile_av_set_switch][protocol]", "ftp");
+            params.put("commands[3][ngfw_profile_av_set_switch][switch]", avPolicy.getFtpSwitch());
+            params.put("commands[4][ngfw_profile_av_set_protocol_1][name]", policyName);
+            params.put("commands[4][ngfw_profile_av_set_protocol_1][protocol]", "ftp");
+            params.put("commands[4][ngfw_profile_av_set_protocol_1][direction]", avPolicy.getFtpDirection());
+            params.put("commands[4][ngfw_profile_av_set_protocol_1][action]", avPolicy.getFtpAction());
+            params.put("commands[5][ngfw_profile_av_set_switch_3][name]", policyName);
+            params.put("commands[5][ngfw_profile_av_set_switch_3][protocol]", "smtp");
+            params.put("commands[5][ngfw_profile_av_set_switch_3][switch]", avPolicy.getSmtpSwitch());
+            params.put("commands[6][ngfw_profile_av_set_protocol_3][name]", policyName);
+            params.put("commands[6][ngfw_profile_av_set_protocol_3][protocol]", "smtp");
+            params.put("commands[6][ngfw_profile_av_set_protocol_3][direction]", avPolicy.getSmtpDirection());
+            params.put("commands[6][ngfw_profile_av_set_protocol_3][action]", avPolicy.getSmtpAction());
+            params.put("commands[7][ngfw_profile_av_set_switch_4][name]", policyName);
+            params.put("commands[7][ngfw_profile_av_set_switch_4][protocol]", "pop3");
+            params.put("commands[7][ngfw_profile_av_set_switch_4][switch]", avPolicy.getPop3Switch());
+            params.put("commands[8][ngfw_profile_av_set_protocol_4][name]", policyName);
+            params.put("commands[8][ngfw_profile_av_set_protocol_4][protocol]", "pop3");
+            params.put("commands[8][ngfw_profile_av_set_protocol_4][direction]", avPolicy.getPop3Direction());
+            params.put("commands[8][ngfw_profile_av_set_protocol_4][action]", avPolicy.getPop3Action());
+            params.put("commands[9][ngfw_profile_av_set_switch_2][name]", policyName);
+            params.put("commands[9][ngfw_profile_av_set_switch_2][protocol]", "im");
+            params.put("commands[9][ngfw_profile_av_set_switch_2][switch]", avPolicy.getImSwitch());
+            params.put("commands[10][ngfw_profile_av_set_protocol_2][name]", policyName);
+            params.put("commands[10][ngfw_profile_av_set_protocol_2][protocol]", "im");
+            params.put("commands[10][ngfw_profile_av_set_protocol_2][direction]", avPolicy.getImDirection());
+            params.put("commands[10][ngfw_profile_av_set_protocol_2][action]", avPolicy.getImAction());
+            Map<String, String> header = new HashMap<>();
+            header.put("Referer", referer);
+            String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.AV_POLICY_ADD, params, httpClient));
+            logoutTrxFirewall(authid, token, referer, httpClient);
+            return resMessage;
+        }
+        return null;
+    }
+
+    @Override
     public String firewallGroupPolicy() {
         TrxLoginResInfo resInfo = getLoginTrxFirewall();
-//        TrxLoginResInfo resInfo = trxLoginResInfo;
         String authid = resInfo.getAuthid();
         String token = resInfo.getToken();
         String referer = resInfo.getReferer();
