@@ -2,4 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.broadtech.databus.soar.mapper.SoarDeviceActionsMapper">
 
+    <resultMap type="com.broadtech.databus.soar.pojo.SoarCapacityLabelResult" id="BaseEventTypeResultMap2">
+        <id column="id1" property="value"/>
+        <result column="name1" property="label"/>
+        <collection property="children" ofType="com.broadtech.databus.soar.pojo.SoarCapacityLabelResult">
+            <id column="id2" property="value"/>
+            <result column="name2" property="label"/>
+            <collection property="children" ofType="com.broadtech.databus.soar.pojo.SoarCapacityLabelResult">
+                <id column="id3" property="value"/>
+                <result column="name3" property="label"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="getAllLabels" resultMap="BaseEventTypeResultMap2">
+        select
+            sett1.label_id as id1,
+            sett1.label_name as name1,
+            sett2.label_id as id2,
+            sett2.label_name as name2,
+            sett3.label_id as id3,
+            sett3.label_name as name3
+        from soar_capacity_labels sett1
+                 left join soar_capacity_labels sett2 on sett1.label_id=sett2.switch
+                 left join soar_capacity_labels sett3 on sett2.label_id=sett3.switch
+        where sett1.switch='-1' order by sett1.label_id
+    </select>
 </mapper>

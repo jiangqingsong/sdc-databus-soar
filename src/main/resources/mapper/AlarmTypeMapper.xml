@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.broadtech.databus.soar.mapper.AlarmTypeMapper">
 
-    <resultMap type="com.broadtech.databus.soar.service.SoarEventTypeResult" id="BaseEventTypeResultMap">
+    <resultMap type="com.broadtech.databus.soar.pojo.SoarEventTypeResult" id="BaseEventTypeResultMap">
         <id column="id1" property="value"/>
         <result column="name1" property="label"/>
-        <collection property="children" ofType="com.broadtech.databus.soar.service.SoarEventTypeResult">
+        <collection property="children" ofType="com.broadtech.databus.soar.pojo.SoarEventTypeResult">
             <id column="id2" property="value"/>
             <result column="name2" property="label"/>
-            <collection property="children" ofType="com.broadtech.databus.soar.service.SoarEventTypeResult">
+            <collection property="children" ofType="com.broadtech.databus.soar.pojo.SoarEventTypeResult">
                 <id column="id3" property="value"/>
                 <result column="name3" property="label"/>
             </collection>

@@ -38,8 +38,6 @@ public class FirewallServiceImpl implements IFirewallService {
     @Autowired
     private SoarDeviceDetailMapper soarDeviceDetailMapper;
 
-    @Autowired
-
     private String URL = "";
     private TrxLoginResInfo trxLoginResInfo;
 

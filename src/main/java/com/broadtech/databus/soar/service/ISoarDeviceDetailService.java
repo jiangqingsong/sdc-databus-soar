@@ -1,10 +1,8 @@
 package com.broadtech.databus.soar.service;
 
-import com.broadtech.databus.soar.entity.SoarDeviceDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.broadtech.databus.soar.entity.SoarDeviceDetail;
 import com.broadtech.databus.soar.pojo.PageChunk;
-
-import java.util.List;
 
 /**
  * <p>

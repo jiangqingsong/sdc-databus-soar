@@ -2,10 +2,8 @@ package com.broadtech.databus.soar.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.broadtech.databus.soar.entity.AlarmType;
-import com.broadtech.databus.soar.pojo.AlarmTypeResultPojo;
-import com.broadtech.databus.soar.service.SoarEventTypeResult;
+import com.broadtech.databus.soar.pojo.SoarEventTypeResult;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

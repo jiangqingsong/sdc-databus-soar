@@ -1,8 +1,9 @@
 package com.broadtech.databus.soar.service;
 
-import com.broadtech.databus.soar.entity.SoarDeviceActions;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.broadtech.databus.soar.entity.SoarDeviceActions;
 import com.broadtech.databus.soar.pojo.PageChunk;
+import com.broadtech.databus.soar.pojo.SoarCapacityLabelResult;
 
 import java.util.List;
 
@@ -15,6 +16,12 @@ import java.util.List;
  * @since 2022-03-19
  */
 public interface ISoarDeviceActionsService extends IService<SoarDeviceActions> {
+
+    /**
+     * 查询所有原子能力标签列表
+     * @return
+     */
+    List<SoarCapacityLabelResult> getAllLabels();
 
     /**
      * 根据设备查询原子能力列表
@@ -61,7 +68,7 @@ public interface ISoarDeviceActionsService extends IService<SoarDeviceActions> {
      * @param size
      * @return
      */
-    PageChunk<SoarDeviceActions> selectAll(int current, int size, String actionName);
+    PageChunk<SoarDeviceActions> selectAll(int current, int size, String actionName, String firstLabel, String secondLabel);
 
     /**
      * 根据原子能力名称模糊查询列表
@@ -70,5 +77,11 @@ public interface ISoarDeviceActionsService extends IService<SoarDeviceActions> {
      */
     List<SoarDeviceActions> selectListByActionName(String actionName);
 
+    /**
+     * 修改原子能力状态
+     * @param id
+     * @param status
+     * @return
+     */
     Integer updateStatus(String id, String status);
 }

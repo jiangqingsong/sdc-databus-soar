@@ -1,6 +1,8 @@
 package com.broadtech.databus.soar.common;
 
 import cn.hutool.core.date.DateUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.UUID;
 import java.util.concurrent.*;
@@ -16,7 +18,7 @@ public class Test {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         String projectPath = System.getProperty("user.dir");
         System.out.println(projectPath);
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 55; i++) {
             System.out.println(UUID.randomUUID().toString().replaceAll("-", ""));
         }
 
@@ -45,6 +47,12 @@ public class Test {
                 e.printStackTrace();
             }
         });*/
+
+        String regStr = "{\"field\":\"sip\",\"name\":\"源ip\",\"type\":\"String\",\"reg\":\"^((2(5[0-5]|[0-4]\\\\d))|[0-1]?\\\\d{1,2})(\\\\.((2(5[0-5]|[0-4]\\\\d))|[0-1]?\\\\d{1,2})){3}$\"}";
+
+        JSONObject jsonObject = JSONObject.parseObject(regStr);
+        String reg = jsonObject.getString("reg");
+        System.out.println(reg);
 
 
     }

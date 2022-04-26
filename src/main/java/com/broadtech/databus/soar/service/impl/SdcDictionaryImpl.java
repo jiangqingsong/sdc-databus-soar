@@ -2,13 +2,9 @@ package com.broadtech.databus.soar.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.broadtech.databus.soar.entity.AlarmType;
 import com.broadtech.databus.soar.entity.SdcDictionary;
-import com.broadtech.databus.soar.mapper.AlarmTypeMapper;
 import com.broadtech.databus.soar.mapper.SdcDictionaryMapper;
-import com.broadtech.databus.soar.service.IAlarmTypeService;
 import com.broadtech.databus.soar.service.ISdcDictionaryService;
-import com.broadtech.databus.soar.service.SoarEventTypeResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

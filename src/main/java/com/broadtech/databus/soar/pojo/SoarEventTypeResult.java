@@ -1,4 +1,4 @@
-package com.broadtech.databus.soar.service;
+package com.broadtech.databus.soar.pojo;
 
 import lombok.Data;
 

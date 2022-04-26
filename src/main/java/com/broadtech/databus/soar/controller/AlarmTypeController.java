@@ -3,7 +3,7 @@ package com.broadtech.databus.soar.controller;
 
 import com.broadtech.databus.soar.common.ResultUtil;
 import com.broadtech.databus.soar.service.IAlarmTypeService;
-import com.broadtech.databus.soar.service.SoarEventTypeResult;
+import com.broadtech.databus.soar.pojo.SoarEventTypeResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

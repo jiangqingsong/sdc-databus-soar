@@ -45,6 +45,11 @@ public class SoarDeviceActions implements Serializable {
     private String actionDesc;
 
     /**
+     * 能力label ID
+     */
+    private String capacityLabelId;
+
+    /**
      * 调用databus用的url
      */
     private String url;
@@ -112,5 +117,17 @@ public class SoarDeviceActions implements Serializable {
      */
     @TableField(exist = false)
     private String devUrl;
+
+    /**
+     * 一级能力Label
+     */
+    @TableField(exist = false)
+    private String firstLabel;
+
+    /**
+     * 二级能力Label
+     */
+    @TableField(exist = false)
+    private String secondLabel;
 
 }

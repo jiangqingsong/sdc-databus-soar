@@ -1,13 +1,9 @@
 package com.broadtech.databus.soar.mapper;
 
-import com.broadtech.databus.soar.entity.SoarDeviceActions;
-import com.broadtech.databus.soar.entity.SoarDeviceDetail;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.broadtech.databus.soar.entity.SoarDeviceDetail;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-
-import java.util.List;
 
 /**
  * <p>

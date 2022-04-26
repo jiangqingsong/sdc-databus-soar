@@ -4,7 +4,9 @@ package com.broadtech.databus.soar.controller;
 import com.broadtech.databus.soar.common.ResultUtil;
 import com.broadtech.databus.soar.entity.SoarDeviceActions;
 import com.broadtech.databus.soar.pojo.PageChunk;
+import com.broadtech.databus.soar.pojo.SoarCapacityLabelResult;
 import com.broadtech.databus.soar.service.ISoarDeviceActionsService;
+import com.broadtech.databus.soar.pojo.SoarEventTypeResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,16 @@ public class SoarDeviceActionsController {
     private ISoarDeviceActionsService soarDeviceActionsService;
 
 
+
+    /**
+     * 查询所有原子标签列表
+     * @return
+     */
+    @RequestMapping(value = "/getAllActionLabels", method = RequestMethod.GET)
+    public ResponseEntity<PageChunk<SoarDeviceActions>> getAllActionLabels(){
+        List<SoarCapacityLabelResult> allLabels = soarDeviceActionsService.getAllLabels();
+        return new ResponseEntity(ResultUtil.success(allLabels), HttpStatus.OK);
+    }
     /**
      * 查询所有原子能力列表
      * @param current 页码
@@ -36,9 +48,11 @@ public class SoarDeviceActionsController {
     @RequestMapping(value = "/selectAllActions", method = RequestMethod.POST)
     public ResponseEntity<PageChunk<SoarDeviceActions>> selectAll(@RequestParam(value = "current", defaultValue = "1") int current,
                                                              @RequestParam(value = "size", defaultValue = "20") int size,
-                                                             @RequestParam("actionName") String actionName
+                                                             @RequestParam("actionName") String actionName,
+                                                             @RequestParam("firstLabel") String firstLabel,
+                                                             @RequestParam("secondLabel") String secondLabel
                                                              ){
-        PageChunk<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAll(current, size, actionName);
+        PageChunk<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAll(current, size, actionName,firstLabel, secondLabel);
         return new ResponseEntity(ResultUtil.success(SoarDevices), HttpStatus.OK);
     }
 

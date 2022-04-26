@@ -2,7 +2,7 @@ package com.broadtech.databus.soar.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.broadtech.databus.soar.entity.AlarmType;
-import com.broadtech.databus.soar.pojo.AlarmTypeResultPojo;
+import com.broadtech.databus.soar.pojo.SoarEventTypeResult;
 
 import java.util.List;
 
