@@ -1,5 +1,8 @@
 package com.broadtech.databus.soar.constans;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author: leo.j
  * @desc:
@@ -85,4 +88,26 @@ public class TrxInterfaceConstant {
     public static final String IPS_ADD_CLASS_BY_OS = "os";
     public static final String IPS_ADD_CLASS_BY_POP = "pop";
     public static final String IPS_ADD_CLASS_BY_RISK = "risk";
+
+
+    //漏洞扫描任务状态
+    public static final Map<Integer, String> TASK_STATUS_MAP = new HashMap<>();
+    public static final String SYS_SCAN_ADD = "/async/sysscan/add/";
+    public static final String WEB_SCAN_ADD = "/async/webscan/add/";
+    public static final String CRACK_ADD = "/async/crack/add/";
+
+
+
+    static {
+        TASK_STATUS_MAP.put(1001, "请输入必填参数");
+        TASK_STATUS_MAP.put(1002, "用户名或密码错误");
+        TASK_STATUS_MAP.put(1003, "名称已存在，请使用其他别名");
+        TASK_STATUS_MAP.put(1004, "许可文件受限，已达到最大任务资产数");
+        TASK_STATUS_MAP.put(1005, "扫描目标为空");
+        TASK_STATUS_MAP.put(1006, "任务ID（taskid）不存在");
+        TASK_STATUS_MAP.put(1007, "指定IP/域名（target）不存在");
+        TASK_STATUS_MAP.put(1008, "指定jobid不存在");
+        TASK_STATUS_MAP.put(1009, "暂无数据");
+        TASK_STATUS_MAP.put(1010, "许可证已到期");
+    }
 }

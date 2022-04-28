@@ -6,7 +6,6 @@ import com.broadtech.databus.soar.entity.SoarDeviceActions;
 import com.broadtech.databus.soar.pojo.PageChunk;
 import com.broadtech.databus.soar.pojo.SoarCapacityLabelResult;
 import com.broadtech.databus.soar.service.ISoarDeviceActionsService;
-import com.broadtech.databus.soar.pojo.SoarEventTypeResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -90,13 +89,12 @@ public class SoarDeviceActionsController {
 
 
     /**
-     * 根据设备ID查询启用的能力列表
-     * @param devId
+     * 查询启用的能力列表
      * @return
      */
-    @RequestMapping(value = "/selectEnableActionByDevId/{devId}", method = RequestMethod.POST)
-    public ResponseEntity<List<SoarDeviceActions>> selectAll(@PathVariable("devId") String devId){
-        List<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAllByDevId(devId);
+    @RequestMapping(value = "/selectEnableActions", method = RequestMethod.POST)
+    public ResponseEntity<List<SoarDeviceActions>> selectAll(){
+        List<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAllByDevId();
         return new ResponseEntity(ResultUtil.success(SoarDevices), HttpStatus.OK);
     }
 

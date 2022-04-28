@@ -27,8 +27,8 @@ public interface SoarDeviceActionsMapper extends BaseMapper<SoarDeviceActions> {
     List<SoarDeviceActions> getFullActionInfo(@Param("current") int current, @Param("size") int size, @Param("name") String name);
 
     @Select("select a.*, d.device_name as deviceName, d.device_type as deviceType, d.responsible_person as responsiblePerson from soar_device_actions a left join soar_device_detail d on a.device_id=d.device_id" +
-            " where a.device_id=#{devId} and a.status=1" )
-    List<SoarDeviceActions> getFullEnableActionInfo(@Param("devId") String devId);
+            " where a.status=1" )
+    List<SoarDeviceActions> getFullEnableActionInfo();
 
     List<SoarCapacityLabelResult> getAllLabels();
 }

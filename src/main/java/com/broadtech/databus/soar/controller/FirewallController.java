@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.broadtech.databus.soar.common.ResultUtil;
 import com.broadtech.databus.soar.pojo.AvPolicy;
 import com.broadtech.databus.soar.service.IFirewallService;
+import com.broadtech.databus.soar.service.IVulnerabilityScanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,59 @@ import org.springframework.web.bind.annotation.*;
 public class FirewallController {
     @Autowired
     private IFirewallService firewallService;
+
+    @Autowired
+    private IVulnerabilityScanService vulnerabilityScanService;
+
+    /**
+     * 口令猜测
+     * @param target
+     * @param username
+     * @param password
+     * @return
+     */
+    @RequestMapping(value = "/pwdGuess", method = RequestMethod.POST)
+    public ResponseEntity<String> pwdGuess(@RequestParam("target") String target,
+                                                          @RequestParam("username") String username,
+                                                          @RequestParam("password") String password
+                                                          ){
+        String result = vulnerabilityScanService.crack(target, username, password);
+        return new ResponseEntity(ResultUtil.success(result), HttpStatus.OK);
+    }
+
+    /**
+     * WEB漏洞扫描
+     * @param target
+     * @param username
+     * @param password
+     * @return
+     */
+    @RequestMapping(value = "/webVulnerabilityScan", method = RequestMethod.POST)
+    public ResponseEntity<String> webVulnerabilityScan(@RequestParam("target") String target,
+                                                          @RequestParam("username") String username,
+                                                          @RequestParam("password") String password
+    ){
+        String result = vulnerabilityScanService.webScan(target, username, password);
+        return new ResponseEntity(ResultUtil.success(result), HttpStatus.OK);
+    }
+
+    /**
+     * 系统漏洞扫描
+     * @param target
+     * @param username
+     * @param password
+     * @return
+     */
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> systemVulnerabilityScan(@RequestParam("target") String target,
+                                                          @RequestParam("username") String username,
+                                                          @RequestParam("password") String password
+    ){
+        String result = vulnerabilityScanService.sysScan(target, username, password);
+        return new ResponseEntity(ResultUtil.success(result), HttpStatus.OK);
+    }
+
+
     /**
      * 获取所有策略组
      * @return

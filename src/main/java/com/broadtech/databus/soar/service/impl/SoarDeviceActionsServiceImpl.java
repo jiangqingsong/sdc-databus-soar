@@ -50,8 +50,8 @@ public class SoarDeviceActionsServiceImpl extends ServiceImpl<SoarDeviceActionsM
     }
 
     @Override
-    public List<SoarDeviceActions> selectAllByDevId(String devId) {
-        List<SoarDeviceActions> list = soarDeviceActionsMapper.getFullEnableActionInfo(devId);
+    public List<SoarDeviceActions> selectAllByDevId() {
+        List<SoarDeviceActions> list = soarDeviceActionsMapper.getFullEnableActionInfo();
         return list;
     }
 
