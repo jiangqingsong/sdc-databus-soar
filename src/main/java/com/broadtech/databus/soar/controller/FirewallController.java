@@ -64,7 +64,7 @@ public class FirewallController {
      * @param password
      * @return
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/systemVulnerabilityScan", method = RequestMethod.POST)
     public ResponseEntity<String> systemVulnerabilityScan(@RequestParam("target") String target,
                                                           @RequestParam("username") String username,
                                                           @RequestParam("password") String password
