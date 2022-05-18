@@ -6,9 +6,9 @@ spring:
   application:
     name: ${app-name:SDC-DATABUS-SOAR}
   datasource:
-    url: jdbc:mysql://${DB_URL:192.168.5.93:3306/smop-sdc}?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
-    username: ${UERNAME:root}
-    password: ${PASSWORD:root}
+    url: jdbc:mysql://${db_url:192.168.5.93:3306/smop-sdc}?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: ${username:root}
+    password: ${password:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
