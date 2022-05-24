@@ -2,9 +2,7 @@ package com.broadtech.databus.soar.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.broadtech.databus.soar.entity.SoarDeviceActions;
 import com.broadtech.databus.soar.entity.SoarDeviceDetail;
-import com.broadtech.databus.soar.entity.SoarDeviceInterfaces;
 import com.broadtech.databus.soar.mapper.SoarDeviceDetailMapper;
 import com.broadtech.databus.soar.pojo.PageChunk;
 import com.broadtech.databus.soar.pojo.TrxLoginResInfo;

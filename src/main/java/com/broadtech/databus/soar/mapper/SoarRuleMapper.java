@@ -2,6 +2,7 @@ package com.broadtech.databus.soar.mapper;
 
 import com.broadtech.databus.soar.entity.SoarRule;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.mapstruct.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author leo.j
  * @since 2022-03-19
  */
+@Mapper
 public interface SoarRuleMapper extends BaseMapper<SoarRule> {
 
 }

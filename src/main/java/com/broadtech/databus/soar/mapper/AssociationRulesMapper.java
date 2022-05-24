@@ -3,13 +3,14 @@ package com.broadtech.databus.soar.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.broadtech.databus.soar.entity.AssociationRules;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 
-@Component
+@Mapper
 public interface AssociationRulesMapper extends BaseMapper<AssociationRules> {
 
     @Select("select job_id from soar_association_rule where id=#{id}")
