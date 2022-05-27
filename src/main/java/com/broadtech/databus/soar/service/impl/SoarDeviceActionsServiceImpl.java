@@ -49,9 +49,10 @@ public class SoarDeviceActionsServiceImpl extends ServiceImpl<SoarDeviceActionsM
     }
 
     @Override
-    public List<SoarDeviceActions> selectAllByDevId() {
-        List<SoarDeviceActions> list = soarDeviceActionsMapper.getFullEnableActionInfo();
-        return list;
+    public List<SoarDeviceActions> selectAllByDevId(String labelId) {
+        QueryWrapper<SoarDeviceActions> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("capacity_label_id", labelId);
+        return soarDeviceActionsMapper.selectList(queryWrapper);
     }
 
     @Override

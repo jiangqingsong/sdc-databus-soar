@@ -60,7 +60,7 @@ public class SearchServiceImpl implements ISearchService {
         }
 
         StringBuffer sqlBuffer = new StringBuffer();
-        sqlBuffer.append("select * from alarm_assc_anls where evt_id in ('");
+        sqlBuffer.append("select * from alarm_assc_anls where event_id in ('");
         sqlBuffer.append(String.join("','", split));
         sqlBuffer.append("')");
         String sql = sqlBuffer.toString();

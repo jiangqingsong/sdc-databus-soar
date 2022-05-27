@@ -92,9 +92,9 @@ public class SoarDeviceActionsController {
      * 查询启用的能力列表
      * @return
      */
-    @RequestMapping(value = "/selectEnableActions", method = RequestMethod.POST)
-    public ResponseEntity<List<SoarDeviceActions>> selectAll(){
-        List<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAllByDevId();
+    @RequestMapping(value = "/selectAllEnableActionsByLabel", method = RequestMethod.POST)
+    public ResponseEntity<List<SoarDeviceActions>> selectAll(@RequestParam(value = "labelId") String labelId){
+        List<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAllByDevId(labelId);
         return new ResponseEntity(ResultUtil.success(SoarDevices), HttpStatus.OK);
     }
 
