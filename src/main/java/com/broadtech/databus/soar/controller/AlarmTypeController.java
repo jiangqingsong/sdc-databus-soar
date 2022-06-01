@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * <p>
  * 告警事件类型
- * </p>
- *
  * @author leo.j
  * @since 2022-03-19
  */

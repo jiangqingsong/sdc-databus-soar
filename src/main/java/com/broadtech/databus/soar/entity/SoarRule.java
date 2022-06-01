@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * <p>
  * 联动编排规则表
- * </p>
- *
  * @author leo.j
  * @since 2022-03-19
  */

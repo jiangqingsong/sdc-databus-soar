@@ -8,10 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * <p>
- * 
- * </p>
- *
+ * 设备详情
  * @author leo.j
  * @since 2022-03-19
  */

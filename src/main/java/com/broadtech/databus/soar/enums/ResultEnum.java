@@ -1,7 +1,9 @@
 package com.broadtech.databus.soar.enums;
 
 /**
- * 接口返回处理状态信息枚举类
+ * @Author: leo.j
+ * @desc: 接口返回处理状态信息枚举类
+ * @Date: 2022/3/31 3:39 下午
  */
 public enum ResultEnum {
 

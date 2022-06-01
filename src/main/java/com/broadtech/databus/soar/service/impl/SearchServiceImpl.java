@@ -36,7 +36,7 @@ public class SearchServiceImpl implements ISearchService {
         sqlBuffer.append(String.join("','", split));
         sqlBuffer.append("')");
         String sql = sqlBuffer.toString();
-        System.out.printf("检索sql：%s", sql);
+        LOGGER.info("检索sql：%s", sql);
         List<Map<String, Object>> mapList = prestoClient.queryForList(sql);
         int total  = mapList.size();
         Integer pageCount = total % size == 0 ? total / size : total / size + 1;
@@ -64,7 +64,7 @@ public class SearchServiceImpl implements ISearchService {
         sqlBuffer.append(String.join("','", split));
         sqlBuffer.append("')");
         String sql = sqlBuffer.toString();
-        System.out.printf("检索sql：%s", sql);
+        LOGGER.info("检索sql：%s", sql);
         List<Map<String, Object>> mapList = prestoClient.queryForList(sql);
         int total  = mapList.size();
         Integer pageCount = total % size == 0 ? total / size : total / size + 1;

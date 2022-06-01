@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 /**
- * 原子能力标签
+ * @Author: leo.j
+ * @desc: 原子能力标签
+ * @Date: 2022/4/15 9:36 上午
  */
 @Data
 public class SoarCapacityLabels {

@@ -48,7 +48,6 @@ public class EncryptUtil {
 
             int blockSize = cipher.getBlockSize();
             //int blockSize = 128;
-            //System.out.println(blockSize);
             byte[] dataBytes = content.getBytes();
             int length = dataBytes.length;
 

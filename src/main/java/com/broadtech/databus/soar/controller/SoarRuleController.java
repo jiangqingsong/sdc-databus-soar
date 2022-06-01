@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * <p>
- * 联动编排规则表 前端控制器
- * </p>
- *
+ * 联动编排规则表
  * @author leo.j
  * @since 2022-03-19
  */

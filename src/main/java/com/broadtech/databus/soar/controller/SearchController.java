@@ -18,10 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>
- * 告警事件类型
- * </p>
- *
+ * 日志检索controller
  * @author leo.j
  * @since 2022-03-19
  */

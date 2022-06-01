@@ -8,10 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * <p>
  * 设备->接口列表
- * </p>
- *
  * @author leo.j
  * @since 2022-03-19
  */

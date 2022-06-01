@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * <p>
- * 设备->动作列表 前端控制器
- * </p>
- *
+ * 设备原子能力controller
  * @author leo.j
  * @since 2022-03-19
  */

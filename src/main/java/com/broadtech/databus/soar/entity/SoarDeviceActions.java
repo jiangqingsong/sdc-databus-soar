@@ -10,10 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * <p>
  * 设备->动作列表
- * </p>
- *
  * @author leo.j
  * @since 2022-03-19
  */

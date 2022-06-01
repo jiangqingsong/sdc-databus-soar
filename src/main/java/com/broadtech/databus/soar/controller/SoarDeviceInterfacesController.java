@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * <p>
- * 设备->接口列表 前端控制器
- * </p>
- *
+ * 设备接口controller
  * @author leo.j
  * @since 2022-03-19
  */
