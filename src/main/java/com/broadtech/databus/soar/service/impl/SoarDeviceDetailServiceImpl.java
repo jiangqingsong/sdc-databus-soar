@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.broadtech.databus.soar.entity.SoarDeviceDetail;
 import com.broadtech.databus.soar.mapper.SoarDeviceDetailMapper;
+import com.broadtech.databus.soar.pojo.DeviceTypeCount;
 import com.broadtech.databus.soar.pojo.PageChunk;
 import com.broadtech.databus.soar.pojo.TrxLoginResInfo;
 import com.broadtech.databus.soar.service.ISoarDeviceDetailService;
@@ -13,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -66,6 +69,21 @@ public class SoarDeviceDetailServiceImpl extends ServiceImpl<SoarDeviceDetailMap
         String deviceId = UUID.randomUUID().toString().toLowerCase().replaceAll("-", "");
         deviceDetail.setDeviceId(deviceId);
         return soarDeviceDetailMapper.insert(deviceDetail);
+    }
+
+    @Override
+    public List<DeviceTypeCount> getDeviceTypeCount() {
+        QueryWrapper<SoarDeviceDetail> queryWrapper = new QueryWrapper<>();
+        queryWrapper.groupBy("device_type_id");
+        queryWrapper.select("device_type_id, count(*) as count");
+
+        List<DeviceTypeCount> typeCountList = new ArrayList<>();
+        List<Map<String, Object>> maps = soarDeviceDetailMapper.selectMaps(queryWrapper);
+        maps.stream().forEach(m -> {
+            typeCountList.add(new DeviceTypeCount(m.get("device_type_id").toString(), (Long) m.get("count")));
+        });
+
+        return typeCountList;
     }
 
 

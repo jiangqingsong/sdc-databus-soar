@@ -78,4 +78,10 @@ public class SearchServiceImpl implements ISearchService {
         pageChunk.setContent(content);
         return pageChunk;
     }
+
+    public void searchOriginLog(){
+        String id = "";
+        String sql = "select c1, c2 from xxx where c1";
+        prestoClient.queryForList("");
+    }
 }

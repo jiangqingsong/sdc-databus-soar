@@ -2,7 +2,11 @@ package com.broadtech.databus.soar.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.broadtech.databus.soar.entity.SoarDeviceDetail;
+import com.broadtech.databus.soar.pojo.DeviceTypeCount;
 import com.broadtech.databus.soar.pojo.PageChunk;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -31,5 +35,13 @@ public interface ISoarDeviceDetailService extends IService<SoarDeviceDetail> {
      */
     Integer updateByDeviceId(SoarDeviceDetail deviceDetail);
 
+    /**
+     * 新增设备信息
+     * @param deviceDetail
+     * @return
+     */
     Integer saveDevice(SoarDeviceDetail deviceDetail);
+
+
+    List<DeviceTypeCount> getDeviceTypeCount();
 }

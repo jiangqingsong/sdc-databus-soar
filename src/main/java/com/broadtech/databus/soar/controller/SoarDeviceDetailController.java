@@ -3,6 +3,7 @@ package com.broadtech.databus.soar.controller;
 
 import com.broadtech.databus.soar.common.ResultUtil;
 import com.broadtech.databus.soar.entity.SoarDeviceDetail;
+import com.broadtech.databus.soar.pojo.DeviceTypeCount;
 import com.broadtech.databus.soar.pojo.PageChunk;
 import com.broadtech.databus.soar.service.ISoarDeviceDetailService;
 import org.apache.ibatis.annotations.Param;
@@ -29,7 +30,10 @@ public class SoarDeviceDetailController {
 
     /**
      * 根据设备类型查询设备列表
-     * @param typeId
+     * @param typeId 设备类型ID
+     * @param devName 设备名称
+     * @param current 当前页码
+     * @param size 每页大小
      * @return
      */
     @RequestMapping(value = "/selectDevByTypeId/{typeId}", method = RequestMethod.POST)
@@ -71,6 +75,16 @@ public class SoarDeviceDetailController {
         } else {
             return new ResponseEntity(ResultUtil.exception("新增失败！"), HttpStatus.FAILED_DEPENDENCY);
         }
+    }
+
+    /**
+     * 获取设备类型计数
+     * @return
+     */
+    @RequestMapping(value = "/getDeviceTypeCount", method = RequestMethod.GET)
+    public ResponseEntity<List<DeviceTypeCount>> getDeviceTypeCount(){
+        List<DeviceTypeCount> deviceTypeCount = soarDeviceDetailService.getDeviceTypeCount();
+        return new ResponseEntity(ResultUtil.success(deviceTypeCount), HttpStatus.OK);
     }
 
 }

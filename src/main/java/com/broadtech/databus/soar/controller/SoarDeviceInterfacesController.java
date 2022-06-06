@@ -25,6 +25,9 @@ public class SoarDeviceInterfacesController {
 
     /**
      * 查询所有设备->动作列表
+     * @param current 当前页码
+     * @param size 每页大小
+     * @param devId 设备ID
      * @return
      */
     @RequestMapping(value = "/selectInterfaceByDevId", method = RequestMethod.POST)
