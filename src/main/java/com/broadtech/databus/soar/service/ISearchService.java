@@ -20,12 +20,4 @@ public interface ISearchService {
      */
     PageChunk<Map<String, Object>> findLogTemplate(String ids, int current, int size);
 
-    /**
-     * 检索告警日志
-     * @param ids 检索范围
-     * @param current 当前页
-     * @param size 每页大小
-     * @return
-     */
-    PageChunk<Map<String, Object>> findAlarm(String ids, int current, int size);
 }
