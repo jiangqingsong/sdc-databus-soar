@@ -26,9 +26,15 @@ public interface SoarDeviceActionsMapper extends BaseMapper<SoarDeviceActions> {
             "where a.action_name like concat('%', #{name}, '%') limit #{current},#{size}")
     List<SoarDeviceActions> getFullActionInfo(@Param("current") int current, @Param("size") int size, @Param("name") String name);
 
-    @Select("select a.*, d.device_name as deviceName, d.device_type as deviceType, d.responsible_person as responsiblePerson from soar_device_actions a left join soar_device_detail d on a.device_id=d.device_id" +
-            " where a.status=1" )
-    List<SoarDeviceActions> getFullEnableActionInfo();
+    @Select("<script>" +
+            "select a.*, d.device_name as deviceName, d.device_type as deviceType, d.responsible_person as responsiblePerson, d.manufacture as manufacture,\n" +
+            "       d.model as model, d.version as version, d.sn as sn, d.url as devUrl from soar_device_actions a left join soar_device_detail d on a.device_id=d.device_id\n" +
+            "where a.status=1  " +
+            "<if test='labelId != \"\" and labelId != null '>" +
+            "and a.capacity_label_id=#{labelId}" +
+            "</if>" +
+            "</script>" )
+    List<SoarDeviceActions> getFullEnableActionInfo(@Param("labelId") String labelId);
 
     List<SoarCapacityLabelResult> getAllLabels();
 }

@@ -30,14 +30,14 @@ public interface ISoarDeviceActionsService extends IService<SoarDeviceActions> {
      * @param devId 设备ID
      * @return
      */
-    List<SoarDeviceActions> selectAllByDevId(long current, long size, String devId);
+    List<SoarDeviceActions> selectAllByLabelId(long current, long size, String devId);
 
 
     /**
      * 根据设备ID查询启用的能力列表
      * @return
      */
-    List<SoarDeviceActions>  selectAllByDevId(String labelId);
+    List<SoarDeviceActions> selectAllByLabelId(String labelId);
 
     /**
      * 新增原子能力

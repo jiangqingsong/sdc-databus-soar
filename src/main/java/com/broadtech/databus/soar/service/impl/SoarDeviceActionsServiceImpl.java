@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.broadtech.databus.soar.entity.SoarCapacityLabels;
 import com.broadtech.databus.soar.entity.SoarDeviceActions;
+import com.broadtech.databus.soar.entity.SoarDeviceDetail;
 import com.broadtech.databus.soar.mapper.SoarCapacityLabelMapper;
 import com.broadtech.databus.soar.mapper.SoarDeviceActionsMapper;
+import com.broadtech.databus.soar.mapper.SoarDeviceDetailMapper;
 import com.broadtech.databus.soar.pojo.PageChunk;
 import com.broadtech.databus.soar.pojo.SoarCapacityLabelResult;
 import com.broadtech.databus.soar.service.ISoarDeviceActionsService;
@@ -40,7 +42,7 @@ public class SoarDeviceActionsServiceImpl extends ServiceImpl<SoarDeviceActionsM
     }
 
     @Override
-    public List<SoarDeviceActions> selectAllByDevId(long current, long size, String actionId) {
+    public List<SoarDeviceActions> selectAllByLabelId(long current, long size, String actionId) {
         QueryWrapper<SoarDeviceActions> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("device_id", actionId);
         Page<SoarDeviceActions> page = new Page<>(current, size);
@@ -49,10 +51,9 @@ public class SoarDeviceActionsServiceImpl extends ServiceImpl<SoarDeviceActionsM
     }
 
     @Override
-    public List<SoarDeviceActions> selectAllByDevId(String labelId) {
-        QueryWrapper<SoarDeviceActions> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("capacity_label_id", labelId);
-        return soarDeviceActionsMapper.selectList(queryWrapper);
+    public List<SoarDeviceActions> selectAllByLabelId(String labelId) {
+
+        return soarDeviceActionsMapper.getFullEnableActionInfo(labelId);
     }
 
     @Override

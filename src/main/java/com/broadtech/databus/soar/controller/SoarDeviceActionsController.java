@@ -80,7 +80,7 @@ public class SoarDeviceActionsController {
     public ResponseEntity<List<SoarDeviceActions>> selectAll(@PathVariable("devId") String devId,
                                                              @RequestParam("current") long current,
                                                              @RequestParam("size") long size){
-        List<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAllByDevId(current, size, devId);
+        List<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAllByLabelId(current, size, devId);
         return new ResponseEntity(ResultUtil.success(SoarDevices), HttpStatus.OK);
     }
 
@@ -91,7 +91,7 @@ public class SoarDeviceActionsController {
      */
     @RequestMapping(value = "/selectAllEnableActionsByLabel", method = RequestMethod.POST)
     public ResponseEntity<List<SoarDeviceActions>> selectAll(@RequestParam(value = "labelId") String labelId){
-        List<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAllByDevId(labelId);
+        List<SoarDeviceActions> SoarDevices = soarDeviceActionsService.selectAllByLabelId(labelId);
         return new ResponseEntity(ResultUtil.success(SoarDevices), HttpStatus.OK);
     }
 
