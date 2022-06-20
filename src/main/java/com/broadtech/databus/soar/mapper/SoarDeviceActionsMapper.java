@@ -31,7 +31,7 @@ public interface SoarDeviceActionsMapper extends BaseMapper<SoarDeviceActions> {
             "       d.model as model, d.version as version, d.sn as sn, d.url as devUrl from soar_device_actions a left join soar_device_detail d on a.device_id=d.device_id\n" +
             "where a.status=1  " +
             "<if test='labelId != \"\" and labelId != null '>" +
-            "and a.capacity_label_id=#{labelId}" +
+            "and a.capacity_label_id like CONCAT('%',#{labelId},'%') " +
             "</if>" +
             "</script>" )
     List<SoarDeviceActions> getFullEnableActionInfo(@Param("labelId") String labelId);

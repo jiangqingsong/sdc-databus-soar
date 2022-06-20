@@ -102,7 +102,7 @@ public class SoarDeviceActionsServiceImpl extends ServiceImpl<SoarDeviceActionsM
         Page<SoarDeviceActions> actionsPage = soarDeviceActionsMapper.selectPage(page1, queryWrapper);
 
         Integer startIndex = (current-1) * size ;
-        //关联查询
+        //关联查询获取设备信息
         List<SoarDeviceActions> actionInfo = soarDeviceActionsMapper.getFullActionInfo(startIndex, size, actionName);
         List<SoarDeviceActions> newActionInfo = actionInfo.stream().map(a -> {
             String capacityLabelIds = a.getCapacityLabelId();
@@ -122,6 +122,7 @@ public class SoarDeviceActionsServiceImpl extends ServiceImpl<SoarDeviceActionsM
             return a;
         }).collect(Collectors.toList());
 
+        //对一级标签&二级标签过滤
         List<SoarDeviceActions> finalActionInfo = newActionInfo;
         if(!"".equals(firstLabel) && !"".equals(secondLabel)){
             finalActionInfo = actionInfo.stream().filter(a -> a.getFirstLabel().contains(firstLabel) && a.getSecondLabel().contains(secondLabel)).collect(Collectors.toList());
@@ -131,11 +132,14 @@ public class SoarDeviceActionsServiceImpl extends ServiceImpl<SoarDeviceActionsM
             finalActionInfo = actionInfo.stream().filter(a -> a.getSecondLabel().contains(secondLabel)).collect(Collectors.toList());
         }
 
+        //计算分页信息
+        int totalElements = finalActionInfo.size();
+        int totalPages = totalElements / size + 1;
         PageChunk<SoarDeviceActions> pageChunk = new PageChunk<>();
         pageChunk.setContent(finalActionInfo);
         pageChunk.setPageNumber(current);
-        pageChunk.setTotalPages((int)actionsPage.getPages());
-        pageChunk.setTotalElements(actionsPage.getTotal());
+        pageChunk.setTotalPages(totalPages);
+        pageChunk.setTotalElements(totalElements);
         return pageChunk;
     }
 
