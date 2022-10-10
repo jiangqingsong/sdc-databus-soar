@@ -962,8 +962,8 @@ public class FirewallServiceImpl implements IFirewallService {
             Map<String, Object> params = new HashMap<>();
             params.put("userMark", resInfo.getAuthid());
             params.put("token", resInfo.getToken());
-            params.put("commands[0][pf_blacklist_add][ip_start]", ip_start);
-            params.put("commands[0][pf_blacklist_add][ip_end]", ip_end);
+            params.put("commands[0][pf_blacklist_range_add][ip_start]", ip_start);
+            params.put("commands[0][pf_blacklist_range_add][ip_end]", ip_end);
             Map<String, String> header = new HashMap<>();
             header.put("Referer", resInfo.getReferer());
             String resMessage = formatResMessage(HttpsUtil.doPost(header, URL + TrxInterfaceConstant.BLOCK_LIST_RANGE_ADD, params, resInfo.getHttpClient()));
@@ -986,6 +986,7 @@ public class FirewallServiceImpl implements IFirewallService {
             Map<String, Object> params = new HashMap<>();
             params.put("userMark", resInfo.getAuthid());
             params.put("token", resInfo.getToken());
+
             params.put("commands[0][pf_blacklist_app_add][name]", appName);
 
             Map<String, String> header = new HashMap<>();
