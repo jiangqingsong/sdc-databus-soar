@@ -3,6 +3,7 @@ package com.broadtech.databus.soar.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.broadtech.databus.soar.common.RestTemplateUtil;
 import com.broadtech.databus.soar.constans.KeySecurityConstant;
+import com.broadtech.databus.soar.pojo.key.KeyPairDataPO;
 import com.broadtech.databus.soar.pojo.key.KeyPairPO;
 import com.broadtech.databus.soar.service.IKeyManageService;
 import org.springframework.util.LinkedMultiValueMap;
@@ -63,8 +64,16 @@ public class KeyManageServiceImpl implements IKeyManageService {
         keyPair.setAppId(param.get("appId"));
         keyPair.setCertId(param.get("certId"));
         keyPair.setCreateTime(param.get("createTime"));
-        keyPair.setCreateTime(param.get("createTime"));
+        //...
+        KeyPairDataPO keyPairData = new KeyPairDataPO();
+        keyPairData.setId(param.get("keyPair_createTime"));
+        keyPairData.setPrivateKey(param.get("keyPair_privateKey"));
+        keyPairData.setPublicKey(param.get("keyPair_publicKey"));
+        keyPairData.setSymKey(param.get("keyPair_symKey"));
+
+        keyPair.setData(keyPairData);
         //todo set其余字段
+        map.set("keypair", keyPair);
 
         String url = KeySecurityConstant.URL_PREFIX + "/keyMgr/app/add";
         return RestTemplateUtil.post(map, url);
