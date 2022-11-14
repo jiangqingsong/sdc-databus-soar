@@ -27,7 +27,7 @@ public class KeyPairPO {
     private String appId;
     private String certId;
     private String createTime;
-    private String data;
+    private KeyPairDataPO data;
     private String id;
     private String institution;
     private String keyType;
