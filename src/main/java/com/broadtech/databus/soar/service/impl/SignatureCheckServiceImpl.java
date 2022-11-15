@@ -134,5 +134,135 @@ public class SignatureCheckServiceImpl implements ISignatureCheckService {
         return RestTemplateUtil.post(map, url);
     }
 
+    @Override
+    public JSONObject HashInit(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject HashUpdate(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject Mac(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject MacFinal(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject MacInit(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject MacUpdate(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject ParseCert(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SignData(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SignDataFinal(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SignDataInit(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SignDataUpdate(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SignMessage(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SignMessageFinal(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SignMessageInit(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SignMessageUpdate(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SymmetricDecrypt(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject SymmetricEncrypt(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject ValidateCert(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject VerifySignedData(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject VerifySignedDataFinal(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject VerifySignedDataInit(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject VerifySignedDataUpdate(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject VerifySignedMessage(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject VerifySignedMessageFinal(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject VerifySignedMessageInit(Map<String, String> param) {
+        return null;
+    }
+
+    @Override
+    public JSONObject VerifySignedMessageUpdate(Map<String, String> param) {
+        return null;
+    }
+
 
 }
